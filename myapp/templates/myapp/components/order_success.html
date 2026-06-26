@@ -1,0 +1,45 @@
+{% extends "myapp/base.html" %}
+{% block content %}
+<div class="container mx-auto mt-16 max-w-3xl">
+  <div class="bg-white shadow-lg rounded-lg p-6 text-center">
+    
+
+    <h2 class="text-3xl font-bold text-gray-800">Thank You for Your Order! Order Successfully Placed! </h2>
+    <p>Thank you, {{ order.name }}. Your order has been placed successfully.</p>
+    <p><strong>Order ID:</strong> {{ order.id }}</p>
+    <p>You can use this Order ID to track your order.</p>
+    
+    <p class="text-gray-600 mt-4">
+      We have received your order and will process it shortly. You will receive
+      a confirmation email soon.
+    </p>
+    <a href="{% url 'track' %}">Track Your Order</a>
+
+    <!-- Decorative line -->
+    <div class="border-t border-gray-300 my-6"></div>
+
+    <!-- Call to Action -->
+    <a
+      href="{% url 'menu' %}"
+      class="btn btn-primary text-white mt-4"
+    >
+      Back to Menu
+    </a>
+  </div>
+
+  <!-- Additional Thank You Message -->
+  <div class="mt-10 text-center">
+    <h3 class="text-lg font-semibold text-gray-700">
+      Have questions about your order?
+    </h3>
+    <p class="text-gray-600">
+      <a
+        href="{% url 'contact' %}"
+        class="btn btn-primary text-white mt-4"
+        >Contact us anytime!
+      </a>
+      
+    </p>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,136 @@
+{% extends "myapp/base.html" %}
+{% load static %}
+{% block title %} Menu {% endblock title %}
+{% block content %}
+<section class="bg-gradient-to-t from-orange-100 via-orange-50 to-white">
+    <div class="container mx-auto px-6 py-16">
+        <h2 class="text-3xl font-bold text-center text-gray-800 mb-10">Menu</h2>
+        <!-- Fast Foods Section -->
+
+        {% include 'myapp/section_template.html' with section_title="Fast Foods" items=fastfoods %}
+        {% include 'myapp/section_template.html' with section_title="Snacks/BreakFasts" items=snacks %}
+        {% include 'myapp/section_template.html' with section_title="Lunch" items=lunch %}
+        {% include 'myapp/section_template.html' with section_title="Dinner" items=dinner %}
+        {% include 'myapp/section_template.html' with section_title="Desserts" items=desserts %}
+
+        {% comment %} 
+        <div class="section my-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Fast Foods</h2>
+            <div class="row">
+                {% for item in fastfoods %}
+                <div class="col-md-4">
+                    <div class="card mb-4 bg-gradient-to-b from-orange-100 via-orange-50 to-white shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <img src="{{ item.image.url }}" class="card-img-top"  alt="{{ item.name }}">
+                        <div class="card-body p-4">
+                            <h5 class="card-title text-2xl font-semibold text-gray-800">{{ item.name }}</h5>
+                            <p class="card-text text-gray-600 mt-2 mx-4">{{ item.description }}</p>
+                            <p class="card-text text-orange-500 font-bold mt-2"><strong>Price:</strong> ₹{{ item.price }}</p>
+                            <a href="#" class="inline-block bg-orange-500 text-white mt-4 px-5 py-2 rounded-full hover:bg-orange-600">
+                                Order Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+       
+
+    
+
+        <!-- Repeat for Other Sections -->
+        <div class="section my-8 ">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Snacks/BreakFasts</h2>
+            <div class="row">
+                {% for item in snacks %}
+                <div class="col-md-4">
+                    <div class="card mb-4 bg-gradient-to-b from-orange-100 via-orange-50 to-white shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <img src="{{ item.image.url }}" class="card-img-top"  alt="{{ item.name }}">
+                        <div class="card-body p-4">
+                            <h5 class="card-title text-2xl font-semibold text-gray-800">{{ item.name }}</h5>
+                            <p class="card-text text-gray-600 mt-2 mx-4">{{ item.description }}</p>
+                            <p class="card-text text-orange-500 font-bold mt-2"><strong>Price:</strong> ₹{{ item.price }}</p>
+                            <a href="#" class="inline-block bg-orange-500 text-white mt-4 px-5 py-2 rounded-full hover:bg-orange-600">
+                                Order Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+
+        <div class="section my-8 ">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Lunch</h2>
+            <div class="row">
+                {% for item in lunch %}
+                <div class="col-md-4">
+                    <div class="card mb-4 bg-gradient-to-b from-orange-100 via-orange-50 to-white shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <img src="{{ item.image.url }}" class="card-img-top"  alt="{{ item.name }}">
+                        <div class="card-body p-4">
+                            <h5 class="card-title text-2xl font-semibold text-gray-800">{{ item.name }}</h5>
+                            <p class="card-text text-gray-600 mt-2 mx-4">{{ item.description }}</p>
+                            <p class="card-text text-orange-500 font-bold mt-2"><strong>Price:</strong> ₹{{ item.price }}</p>
+                            <a href="#" class="inline-block bg-orange-500 text-white mt-4 px-5 py-2 rounded-full hover:bg-orange-600">
+                                Order Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="section my-8 ">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Dinner</h2>
+            <div class="row">
+                {% for item in dinner %}
+                <div class="col-md-4">
+                    <div class="card mb-4 bg-gradient-to-b from-orange-100 via-orange-50 to-white shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <img src="{{ item.image.url }}" class="card-img-top"  alt="{{ item.name }}">
+                        <div class="card-body p-4">
+                            <h5 class="card-title text-2xl font-semibold text-gray-800">{{ item.name }}</h5>
+                            <p class="card-text text-gray-600 mt-2 mx-4">{{ item.description }}</p>
+                            <p class="card-text text-orange-500 font-bold mt-2"><strong>Price:</strong> ₹{{ item.price }}</p>
+                            <a href="#" class="inline-block bg-orange-500 text-white mt-4 px-5 py-2 rounded-full hover:bg-orange-600">
+                                Order Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="section my-8 ">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Desserts</h2>
+            <div class="row">
+                {% for item in desserts %}
+                <div class="col-md-4">
+                    <div class="card mb-4 bg-gradient-to-b from-orange-100 via-orange-50 to-white shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <img src="{{ item.image.url }}" class="card-img-top"  alt="{{ item.name }}">
+                        <div class="card-body p-4">
+                            <h5 class="card-title text-2xl font-semibold text-gray-800">{{ item.name }}</h5>
+                            <p class="card-text text-gray-600 mt-2 mx-4">{{ item.description }}</p>
+                            <p class="card-text text-orange-500 font-bold mt-2"><strong>Price:</strong> ₹{{ item.price }}</p>
+                            <a href="#" class="inline-block bg-orange-500 text-white mt-4 px-5 py-2 rounded-full hover:bg-orange-600">
+                                Order Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div> {% endcomment %}
+
+    </div>
+    
+
+    <!-- Repeat similar sections for Lunch, Dinner, Desserts -->
+
+</section>
+
+
+{% endblock content %}

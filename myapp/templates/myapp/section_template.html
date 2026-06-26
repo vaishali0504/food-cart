@@ -1,0 +1,208 @@
+{% load custom_filters %}
+
+<div class="mb-10">
+    <h3 class="text-3xl font-bold text-gray-800 mb-6">{{ section_title }}</h3>
+
+    <!-- Carousel Container -->
+    <div id="{{ section_title|slugify }}Carousel" class="carousel slide relative" data-bs-ride="carousel">
+        <!-- Carousel Indicators -->
+        <div class="carousel-indicators absolute bottom-0 flex justify-center p-0 mb-4 space-x-2">
+            {% for group in items|chunkify:3 %}
+            <button type="button" data-bs-target="#{{ section_title|slugify }}Carousel" data-bs-slide-to="{{ forloop.counter0 }}" class="w-4 h-4 rounded-full bg-gray-300 {% if forloop.first %}bg-orange-500{% endif %}" aria-current="{% if forloop.first %}true{% endif %}" aria-label="Slide {{ forloop.counter }}"></button>
+            {% endfor %}
+        </div>
+
+        <!-- Carousel Items -->
+        <div class="carousel-inner">
+            {% for group in items|chunkify:3 %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                <div class="row justify-center">
+                    {% for item in group %}
+                    <div class="col-md-4">
+                        <div class="card mb-4 bg-gradient-to-b from-orange-200 via-orange-50 to-white shadow-lg rounded-lg hover:shadow-xl transition-shadow duration-300">
+                            <img src="{{ item.image.url }}" class="card-img-top rounded-t-lg" alt="{{ item.name }}">
+                            <div class="card-body p-6">
+                                <h5 class="card-title text-xl font-bold text-gray-900">{{ item.name }}</h5>
+                                <p class="card-text text-gray-600 mt-2 mx-4">{{ item.description }}</p>
+                                <p class="card-text text-orange-600 font-semibold mt-3 text-lg"><strong>Price:</strong> ₹{{ item.price }}</p>
+                                
+                                <!-- Trigger Modal -->
+                                <button class="w-full bg-orange-500 text-white mt-5 px-5 py-2 rounded-lg hover:bg-orange-600 transition" 
+                                        data-bs-toggle="modal" 
+                                        data-bs-target="#orderModal{{ item.id }}">
+                                    Order Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="orderModal{{ item.id }}" tabindex="-1" aria-labelledby="orderModalLabel{{ item.id }}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header bg-orange-500 text-white">
+                                    <h5 class="modal-title" id="orderModalLabel{{ item.id }}">Order {{ item.name }}</h5>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <form method="post" action="{% url 'order_product' item.id %}">
+                                    {% csrf_token %}
+                                    <div class="modal-body p-6">
+                                        <p class="mb-3 text-lg"><strong>Item:</strong> {{ item.name }}</p>
+                                        <p class="mb-3 text-lg"><strong>Price:</strong> ₹{{ item.price }}</p>
+
+                                        <label for="name{{ item.id }}" class="font-semibold">Your Name:</label>
+                                        <input type="text" id="name{{ item.id }}" name="name" class="form-control rounded mb-3" required>
+
+                                        <label for="address{{ item.id }}" class="font-semibold">Delivery Address:</label>
+                                        <textarea id="address{{ item.id }}" name="address" rows="3" class="form-control rounded mb-3" required></textarea>
+
+                                        <label for="phone_number{{ item.id }}" class="font-semibold">Phone Number:</label>
+                                        <input type="text" id="phone_number{{ item.id }}" name="phone_number" class="form-control rounded mb-3" required>
+
+                                        <label for="email{{ item.id }}" class="font-semibold">Email:</label>
+                                        <input type="email" id="email{{ item.id }}" name="email" class="form-control rounded mb-3" required>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary text-white">Place Order</button>
+
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Carousel Controls -->
+        <!-- Carousel Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#{{ section_title|slugify }}Carousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#{{ section_title|slugify }}Carousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+
+    </div>
+</div>
+
+
+
+
+
+{% comment %} {% load custom_filters %}
+
+<div class="mb-10">
+    <h3 class="text-2xl font-semibold text-gray-800 mb-4">{{ section_title }}</h3>
+
+    <!-- Carousel Container -->
+    <div id="{{ section_title|slugify }}Carousel" class="carousel slide" data-bs-ride="carousel">
+        <!-- Carousel Indicators -->
+        <div class="carousel-indicators">
+            {% for group in items|chunkify:3 %}
+            <button type="button" data-bs-target="#{{ section_title|slugify }}Carousel" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}" aria-current="{% if forloop.first %}true{% endif %}" aria-label="Slide {{ forloop.counter }}"></button>
+            {% endfor %}
+        </div>
+
+        <!-- Carousel Items -->
+        <div class="carousel-inner">
+            {% for group in items|chunkify:3 %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                <div class="row">
+                    {% for item in group %}
+                    <div class="col-md-4">
+                        <div class="card mb-4 bg-gradient-to-b from-orange-100 via-orange-50 to-white shadow-md hover:shadow-xl transition-shadow duration-300">
+                            <img src="{{ item.image.url }}" class="card-img-top" alt="{{ item.name }}">
+                            <div class="card-body p-4">
+                                <h5 class="card-title text-2xl font-semibold text-gray-800">{{ item.name }}</h5>
+                                <p class="card-text text-gray-600 mt-2 mx-4">{{ item.description }}</p>
+                                <p class="card-text text-orange-500 font-bold mt-2"><strong>Price:</strong> ₹{{ item.price }}</p>
+                                <a href="{% url 'order_product' item.id %}" class="inline-block bg-orange-500 text-white mt-4 px-5 py-2 rounded-full hover:bg-orange-600">
+                                    Order Now
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Carousel Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#{{ section_title|slugify }}Carousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#{{ section_title|slugify }}Carousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div> {% endcomment %}
+
+
+
+
+
+
+
+{% comment %} {% load custom_filters %}
+<div class="mb-10">
+    <h3 class="text-2xl font-semibold text-gray-800 mb-4">{{ section_title }}</h3>
+
+    <!-- Carousel Container -->
+    <div id="{{ section_title|slugify }}Carousel" class="carousel slide" data-bs-ride="carousel">
+        <!-- Carousel Indicators -->
+        <div class="carousel-indicators">
+            {% for group in items|chunkify:3 %}
+            <button type="button" data-bs-target="#{{ section_title|slugify }}Carousel" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}" aria-current="{% if forloop.first %}true{% endif %}" aria-label="Slide {{ forloop.counter }}"></button>
+            {% endfor %}
+        </div>
+
+        <!-- Carousel Items -->
+        <div class="carousel-inner">
+            {% for group in items|chunkify:3 %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                <div class="row">
+                    {% for item in group %}
+                    <div class="col-md-4">
+                        <div class="card mb-4 bg-gradient-to-b from-orange-100 via-orange-50 to-white shadow-md hover:shadow-xl transition-shadow duration-300">
+                            <img src="{{ item.image.url }}" class="card-img-top" alt="{{ item.name }}">
+                            <div class="card-body p-4">
+                                <h5 class="card-title text-2xl font-semibold text-gray-800">{{ item.name }}</h5>
+                                <p class="card-text text-gray-600 mt-2 mx-4">{{ item.description }}</p>
+                                <p class="card-text text-orange-500 font-bold mt-2"><strong>Price:</strong> ₹{{ item.price }}</p>
+                                <a href="#" class="inline-block bg-orange-500 text-white mt-4 px-5 py-2 rounded-full hover:bg-orange-600">
+                                    Order Now
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Carousel Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#{{ section_title|slugify }}Carousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#{{ section_title|slugify }}Carousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div> {% endcomment %}
+
+
+
+

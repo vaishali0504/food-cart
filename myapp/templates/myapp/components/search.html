@@ -1,0 +1,26 @@
+{% extends "myapp/base.html" %}
+{% block title %}Search Page{% endblock title %}
+{% block content %}
+<div class="container mt-4">
+  <h1 class="text-center text-2xl font-bold">Search Results</h1>
+  {% if query %}
+    <p class="text-gray-700">Showing results for "<strong>{{ query }}</strong>"</p>
+    {% if results %}
+      <ul class="list-group mt-3">
+        {% for item in results %}
+          <li class="list-group-item">
+            <a href="{% url 'menu'  %}" class="text-decoration-none">
+              {{item.name }} - ₹{{ item.price }}   <b>  Click for more details!!</b>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="text-gray-500 mt-3">No results found for your search.</p>
+    {% endif %}
+  {% else %}
+    <p class="text-gray-500">Please enter a search query.</p>
+  {% endif %}
+</div>
+{% endblock %}
+

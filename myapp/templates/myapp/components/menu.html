@@ -1,0 +1,18 @@
+{% extends "myapp/base.html" %}
+{% load static %}
+{% block title %} Menu {% endblock title %}
+{% block content %}
+<section class="bg-gradient-to-t from-orange-100 via-orange-50 to-white">
+    <div class="container mx-auto px-6 py-16">
+        <h2 class="text-3xl font-bold text-center text-gray-800 mb-10">Menu</h2>
+
+        <!-- All Foods Section -->
+        {% include 'myapp/section_template.html' with section_title="Fast Foods" items=fastfoods %}
+        {% include 'myapp/section_template.html' with section_title="Snacks/BreakFasts" items=snacks %}
+        {% include 'myapp/section_template.html' with section_title="Lunch" items=lunch %}
+        {% include 'myapp/section_template.html' with section_title="Dinner" items=dinner %}
+        {% include 'myapp/section_template.html' with section_title="Desserts" items=desserts %}
+
+    </div>
+</section>
+{% endblock content %}

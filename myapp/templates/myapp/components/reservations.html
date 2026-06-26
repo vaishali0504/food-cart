@@ -1,0 +1,56 @@
+{% extends "myapp/base.html" %}
+{% load static %}
+{% block title %}Reservation{% endblock title %}
+{% block content %}
+<div class="bg-orange-100 via-orange-50 to-white py-16">
+    <!-- Heading -->
+    <h1 class="text-4xl font-bold text-center text-gray-800 mb-8" style="font-family: 'Dancing Script', cursive;">
+        Make a Reservation
+    </h1>
+    
+    <!-- Reservation Form -->
+    <div class="bg-white shadow-lg rounded-lg p-8 max-w-md mx-auto">
+        <form action="#" method="POST" class="space-y-6">
+            <!-- Name -->
+            <div>
+                <label for="name" class="block text-gray-700 font-medium mb-2">Name</label>
+                <input type="text" id="name" name="name" required
+                    class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-orange-500 focus:border-orange-500 p-3">
+            </div>
+            <!-- Date -->
+            <div>
+                <label for="date" class="block text-gray-700 font-medium mb-2">Date</label>
+                <input type="date" id="date" name="date" required
+                    class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-orange-500 focus:border-orange-500 p-3">
+            </div>
+            <!-- Time -->
+            <div>
+                <label for="time" class="block text-gray-700 font-medium mb-2">Time</label>
+                <input type="time" id="time" name="time" required
+                    class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-orange-500 focus:border-orange-500 p-3">
+            </div>
+            <!-- Number of Guests -->
+            <div>
+                <label for="guests" class="block text-gray-700 font-medium mb-2">Number of Guests</label>
+                <input type="number" id="guests" name="guests" min="1" required
+                    class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-orange-500 focus:border-orange-500 p-3">
+            </div>
+            <!-- Mobile Number -->
+            <div>
+                <label for="mobile" class="block text-gray-700 font-medium mb-2">Mobile No</label>
+                <input type="tel" id="mobile" name="mobile" required
+                    class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-orange-500 focus:border-orange-500 p-3"
+                    pattern="[0-9]{10}" placeholder="10-digit mobile number">
+            </div>
+            <!-- Submit Button -->
+            <div>
+                <button type="submit"
+                    class="w-full bg-orange-500 text-white py-3 rounded-lg font-medium hover:bg-orange-600 transition-colors duration-300">
+                    Reserve Now
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}

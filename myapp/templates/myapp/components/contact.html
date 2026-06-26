@@ -1,0 +1,47 @@
+{% extends "myapp/base.html" %}
+{% load static %}
+{% block title %}Contact Us{% endblock title %}
+{% block content %}
+<div class="bg-orange-100 py-16">
+    <div class="container mx-auto px-4">
+        <!-- Heading -->
+        <h1 class="text-4xl font-bold text-center text-gray-800 mb-10" style="font-family: 'Dancing Script', cursive;">
+            Contact Us
+        </h1>
+
+        <!-- Contact Details -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Location Section -->
+            <div class="bg-white shadow-lg rounded-lg p-6">
+                <h2 class="text-2xl font-semibold text-orange-500 mb-4">Our Location</h2>
+                <p class="text-gray-700">
+                    <strong>Address:</strong><br>
+                    Foodie Flavour Restaurant<br>
+                    City Center, Pimple Nilakh<br>
+                    Pune 411027, India
+                </p>
+            </div>
+
+            <!-- Contact Information Section -->
+            <div class="bg-white shadow-lg rounded-lg p-6">
+                <h2 class="text-2xl font-semibold text-orange-500 mb-4">Contact Information</h2>
+                <p class="text-gray-700">
+                    <strong>Phone:</strong> +91 1234567890<br>
+                    <strong>Email:</strong> <a href="mailto:info@foodie.flavour"
+                        class="text-orange-500 hover:underline">info@foodie.flavour</a>
+                </p>
+            </div>
+
+            <!-- Opening Hours Section -->
+            <div class="bg-white shadow-lg rounded-lg p-6">
+                <h2 class="text-2xl font-semibold text-orange-500 mb-4">Opening Hours</h2>
+                <p class="text-gray-700">
+                    <strong>Monday-Friday:</strong> 10:00 AM - 10:00 PM<br>
+                    <strong>Saturday-Sunday:</strong> 11:00 AM - 11:00 PM
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
