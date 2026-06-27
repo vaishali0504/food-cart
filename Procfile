@@ -1,1 +1,1 @@
-web: python manage.py migrate && python manage.py collectstatic --noinput && gunicorn UseTailwind.wsgi --bind 0.0.0.0:$PORT --log-file -
+web: python manage.py migrate && python manage.py collectstatic --noinput && gunicorn UseTailwind.wsgi --bind 0.0.0.0:$PORT --workers 3 --threads 2 --timeout 120 --log-file -
